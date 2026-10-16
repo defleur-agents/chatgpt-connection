@@ -12,7 +12,7 @@ services:
     mem_limit: 128m
     environment:
       WIZARD_APP: wizard-chatgpt
-      APP_VERSION: 0.1.2
+      APP_VERSION: 0.1.3
       FRONT_PORT: "8801"
       UPSTREAM_HOST: wizard-chatgpt-engine
       UPSTREAM_PORT: "8801"
@@ -240,7 +240,7 @@ services:
       is_main: true
       internal_port: 8801
   wizard-chatgpt-engine:
-    image: ghcr.io/humanitylabs-org/wizard-chatgpt:0.1.2@sha256:fdcaaed221937c36b060cd02d915631fab241cfd396fefc65a5622281583e7a3
+    image: ghcr.io/humanitylabs-org/wizard-chatgpt:0.1.3@sha256:ae4a3c84ea3d5bfc22610f4f450ad1907bb67486487c575af7a90f4ef69af8ff
     user: "1000:1000"
     read_only: true
     cap_drop: [ALL]
@@ -252,6 +252,8 @@ services:
     environment:
       WIZARD_CHATGPT_PORT: "8801"
       WIZARD_CHATGPT_PASSWORD: ${WIZARD_CHATGPT_PASSWORD:-}
+      WIZARD_TRUSTED_ORIGINS: ${WIZARD_TRUSTED_ORIGINS:-}
+      WIZARD_TRUSTED_HOSTS: ${WIZARD_TRUSTED_HOSTS:-}
       # The agent whose own ChatGPT sign-in this app drives: the Hermes Agent app's dashboard by default.
       WIZARD_CHATGPT_HERMES_URL: ${WIZARD_CHATGPT_HERMES_URL:-http://hermes-agent:9119}
       WIZARD_CHATGPT_HERMES_USER: ${HERMES_DASHBOARD_BASIC_AUTH_USERNAME:-hermes}
